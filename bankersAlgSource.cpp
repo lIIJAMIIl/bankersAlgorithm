@@ -16,40 +16,56 @@ const int numRes = 3;
 bool safetyTest(int proc[], int available[], int max[][numRes], int allocated[][numRes]);
 
 int main(){
+    
+    /*Declaring array data structures*/
+    int allocated[numProc][numRes];
+    int max[numProc][numRes];
+    int available[numRes];
+
+    /*Opening File Stream*/
+    ifstream arrayIn;
+    arrayIn.open("bankersAlgInput.txt");
+    if(arrayIn.fail()){
+        cout << "Error, file failed to open";
+        exit(1);
+    }
+
+    for(int i = 0; i < numRes; ++i){
+        arrayIn >> available[i];
+    }
+    
+    for(int i = 0; i < numProc; ++i)
+        for(int j = 0; j < numRes; ++j){
+            arrayIn >> allocated[i][j];
+        }
+    
+    for(int i = 0; i < numProc; ++i)
+        for(int j = 0; j < numRes; ++j){
+            arrayIn >> max[i][j];
+        }
+
+    arrayIn.close();
+
+    cout << "Reading array input from file is complete, file closed\n";
 
     /*Process array for bool safetyTest parameter*/
     int proc[] = {0, 1 ,2 ,3 ,4};
-
-    /*Available Vector*/
-    int available[numRes] = {3, 3, 2};
     
+    /*Available array Printout*/
     for(int i = 0; i < numRes; ++i)
         cout << "Resource " << i << " contains " <<  available[i] << " available instances of the resource\numProc";
 
-   /*Allocated Vector, initializing process allocated vectors*/
-
-    int allocated[numProc][numRes] = {{0, 1, 0},
-                            {2, 0, 0},
-                            {3, 0, 2},
-                            {2, 1, 1},
-                            {0, 0, 2}};
-
-        for(int i = 0; i < numProc; ++i)
-            for(int j = 0; j < numRes; ++j){
-                cout << "Process P" << i << " is currently allocated " << allocated[i][j] << " instance(s) of resource " << j << endl;
-        }
+   /*Allocated array printout*/
+    for(int i = 0; i < numProc; ++i)
+        for(int j = 0; j < numRes; ++j){
+            cout << "Process P" << i << " is currently allocated " << allocated[i][j] << " instance(s) of resource " << j << endl;
+    }
     
     /*Max instances of resource process can request*/
-
-    int max[numProc][numRes] = {{7, 5, 3},
-                      {3, 2, 2},
-                      {9, 0, 2},
-                      {2, 2, 2},
-                      {4, 3, 3}};
-        for(int i = 0; i < numProc; ++i)
-            for(int j = 0; j < numRes; ++j){
-                cout << "Process P" << i << " may request at most " << max[i][j]<< " instances of resource " << j << endl;
-        }
+    for(int i = 0; i < numProc; ++i)
+        for(int j = 0; j < numRes; ++j){
+            cout << "Process P" << i << " may request at most " << max[i][j]<< " instances of resource " << j << endl;
+    }
 
     safetyTest(proc, available, max, allocated);
 
