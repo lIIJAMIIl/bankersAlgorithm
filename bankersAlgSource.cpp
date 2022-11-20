@@ -4,6 +4,8 @@
 //11/18/22
 
 #include <iostream>
+#include <fstream>
+#include <cstdlib>
 
 using std::cout; using std::endl;
 
