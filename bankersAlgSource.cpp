@@ -55,7 +55,7 @@ int main(){
     
     /*Available array Printout*/
     for(int i = 0; i < numRes; ++i)
-        cout << "Resource " << i << " contains " <<  available[i] << " available instances of the resource\numProc";
+        cout << "Resource " << i << " contains " <<  available[i] << " available instances of the resource" << endl;
 
    /*Allocated array printout*/
     for(int i = 0; i < numProc; ++i)
