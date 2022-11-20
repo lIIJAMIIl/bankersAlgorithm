@@ -7,7 +7,7 @@
 #include <fstream>
 #include <cstdlib>
 
-using std::cout; using std::endl;
+using std::cout; using std::endl; using std::ifstream;
 
 /*numProc represents the # of processes*/
 const int numProc = 5;      
