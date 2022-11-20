@@ -111,7 +111,8 @@ bool safetyTest(int proc[], int available[], int max[][numRes], int allocated[][
                     if(need[p][j] > work[j])
                         break;
                     
-                
+                /*Variable j reaches numRes without need[] execceding work[], process is able to complete,
+                 releases resources to work, process added to correctSeq[], marks self as finished in finish[]*/
                 if(j == numRes){
                     for(int k = 0; k < numRes; ++k){
                         work[k] += allocated[p][k];
